@@ -5,7 +5,7 @@
 $host = 'localhost';
 $username= 'root';
 $password = 'mysql';
-$db_name = 'proj_store'
+$db_name = 'clinica_internacional'
 ;
 
 $db=mysql_connect($host, $username, $password) or die('Could not connect');
@@ -19,7 +19,8 @@ require 'Slim/Slim.php';
 $app = new \Slim\Slim();
 
 $app->get('/consulta/:dni', function ($dni) {
-    $sth = mysql_query(" select * from producto where id=".$dni);
+    $sth = mysql_query("select * from historial where dni = '".$dni."'");
+    
 	$rows = array();
 	while($r = mysql_fetch_assoc($sth)) {
 	    $rows[] = $r;
